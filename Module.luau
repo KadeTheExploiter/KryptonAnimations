@@ -1,19 +1,20 @@
+
 KryptonConfiguration = {
 	DestroyHeightOffset = 5, -- Make it higher if your hats fall
 	DontStartYet = true,
-	ReturnOnDeath = false,
-	Refit = false,
+	ReturnOnDeath = true,
+	Refit = true,
 	SetCharacter = false,
-	Animations = false,
-	NoCollisions = false,
+	Animations = true,
+	NoCollisions = true,
 	AntiVoiding = false,
 	SetSimulationRadius = true,
 	DisableCharacterScripts = true,
 	AccessoryFallbackDefaults = true,
 	OverlayFakeCharacter = false,
 	LimitHatsPerLimb = false,
-	NoBodyNearby = false,
-	PermanentDeath = false,
+	NoBodyNearby = true,
+	PermanentDeath = true,
 }
 
 local Workspace = game:GetService("Workspace")
@@ -32,9 +33,9 @@ local ReanimateModule = loadstring(game:HttpGet("https://raw.githubusercontent.c
 local Music = Instance.new("Sound", Workspace.CurrentCamera)
 Music.Looped = true
 local Main = Library.Load({
-	Title = "Krypton Animations",
+	Title = " Krypton Animations - V1.1",
 	Style = 1,
-	SizeX = 240,
+	SizeX = 277,
 	SizeY = 300,
 	Theme = "Dark",
 })
@@ -51,6 +52,10 @@ local Tabs = {
 	Animations =  Main.New({
 		Title = "Animations"
 	}),
+
+	Config =  Main.New({
+		Title = "Config"
+	}),
 }
 
 Tabs['Home'].Button({
@@ -64,11 +69,31 @@ Tabs['Home'].Button({
 	Callback = function()
 	end
 })
+
 Tabs['Home'].Button({
+	Text = "https://discord.gg/ArpG4kDvW2",
+	Callback = function()
+	end
+})
+
+Tabs['Config'].Button({
+	Text = "Reanimate Version: "..ReanimateModule.Version,
+	Callback = function()
+	end
+})
+
+Tabs['Config'].Button({
 	Text = "Click To Download Songs",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/GelatekHub/refs/heads/main/src/packages/AudioPack.lua"))()
 	end
+})
+
+Tabs['Config'].Toggle({
+	Text = "Mute Songs",
+	Callback = function(Value)
+		Music.Volume = Value and 0 or 0.5
+	end,
 })
 
 local function SettingIntoToggle(Text, SettingName, Default, Context)
@@ -89,18 +114,24 @@ local function SettingIntoToggle(Text, SettingName, Default, Context)
 	})	
 end
 
+local function PlayAnim(ID, Path)
+	ReanimateModule.AnimationPlayer.Start(ID)
+
+	if getcustomasset and Path then
+		Music.SoundId = getcustomasset(Path)
+		Music:Play()
+	end
+end
+
 local function AnimationIntoButton(Text, ID, Path)
 	Tabs['Animations'].Button({
 		Text = Text,
 		Callback = function()
-			ReanimateModule.AnimationPlayer.Start(ID)
-			if getcustomasset and Path then
-				Music.SoundId = getcustomasset(Path)
-				Music:Play()
-			end
+			PlayAnim(ID, Path)
 		end
 	})
 end
+
 Tabs['Animations'].Button({
 	Text = "- Stop Animation -",
 	Callback = function()
@@ -109,6 +140,12 @@ Tabs['Animations'].Button({
 	end
 })
 
+Tabs['Animations'].TextField({
+	Text = "Custom Anim:",
+	Callback = function(ID)
+		PlayAnim(ID)
+	end
+})
 
 AnimationIntoButton("Freestylin'", 4432024917, "GelatekHub/Animations/Freestylin.mp3")
 AnimationIntoButton("Floss", 4812941481, "GelatekHub/Animations/Floss.mp3")
@@ -146,10 +183,21 @@ Tabs['Reanimate'].Button({
 	end
 })
 
+local Height; Height = Tabs['Reanimate'].TextField({
+	Text = `Destroy Height Offset: {KryptonConfiguration.DestroyHeightOffset}`,
+	Callback = function(ID)
+		local ToNum = tonumber(typeof(ID)=="number" and ID or 5)
+
+		KryptonConfiguration.DestroyHeightOffset = ToNum
+		Height.SetText(`Destroy Height Offset: {ToNum}`)
+	end
+})
+
+
 SettingIntoToggle("Permanent Death", "PermanentDeath", false, "Requires Replicatesignal, keeps you in a dead state without respawning.")
 SettingIntoToggle("Refit", "Refit", false, "Automatically Respawns you if you lose ownership of hats, requires PermanentDeath")
 SettingIntoToggle("Rig Animations", "Animations", false, "Plays default animations for the rig")
 SettingIntoToggle("Overlay Rig", "OverlayFakeCharacter", false, "Overlays the rig by making it semi-transparent")
 SettingIntoToggle("Hide Real Body", "NoBodyNearby", false, "Hides the real character by destroying it with use of FallenPartsDestroyHeight")
-SettingIntoToggle("Collisions ", "NoCollisions", false, "Removes collisions from the rig")
+SettingIntoToggle("Disable Collisions", "NoCollisions", false, "Removes collisions from the rig")
 SettingIntoToggle("Return On Death ", "ReturnOnDeath", false, "Brings you back into the same place you were after stopping the reanimate")
