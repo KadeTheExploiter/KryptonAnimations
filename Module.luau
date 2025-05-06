@@ -1,3 +1,20 @@
+KryptonConfiguration = {
+	DestroyHeightOffset = 5, -- Make it higher if your hats fall
+	DontStartYet = true,
+	ReturnOnDeath = false,
+	Refit = false,
+	SetCharacter = false,
+	Animations = false,
+	NoCollisions = false,
+	AntiVoiding = false,
+	SetSimulationRadius = true,
+	DisableCharacterScripts = true,
+	AccessoryFallbackDefaults = true,
+	OverlayFakeCharacter = false,
+	LimitHatsPerLimb = false,
+	NoBodyNearby = false,
+	PermanentDeath = false,
+}
 
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
