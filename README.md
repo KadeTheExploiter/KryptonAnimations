@@ -43,5 +43,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Kryp
 - IF anything, open an issue on github for suggestions/bug reports
 
 # Credits
-- (Geletek/KadeTheScripter)[https://github.com/KadeTheExploiter]: Lead Developer, Krypton Reanimate
-- (Kinlei:)[https://github.com/Kinlei] Material Lua UI Library
+- [Geletek/KadeTheScripter:](https://github.com/KadeTheExploiter) Lead Developer, Krypton Reanimate
+- [Kinlei:](https://github.com/Kinlei) Material Lua UI Library
