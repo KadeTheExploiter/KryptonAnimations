@@ -5,23 +5,6 @@ Animation ID Player For Roblox ( A stupid one, but works. )
 
 # Module
 ```luau
-KryptonConfiguration = {
-	DestroyHeightOffset = 5, -- Make it higher if your hats fall
-	DontStartYet = true,
-	ReturnOnDeath = true,
-	Refit = true,
-	SetCharacter = false,
-	Animations = true,
-	NoCollisions = true,
-	AntiVoiding = false,
-	SetSimulationRadius = true,
-	DisableCharacterScripts = true,
-	AccessoryFallbackDefaults = true,
-	OverlayFakeCharacter = false,
-	LimitHatsPerLimb = false,
-	NoBodyNearby = true,
-	PermanentDeath = true,
-}
 loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/KryptonAnimations/refs/heads/main/Module.luau"))()
 ```
 
