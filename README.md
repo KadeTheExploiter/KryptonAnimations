@@ -28,6 +28,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/KadeTheExploiter/Kryp
 # Features
 - Runs on official Krypton Reanimate module, so you will be up to date all time.
 - Supports Audios
+- Supports a lot of rigs
 - 20+ Animations (Will add more later on).
 - Supports Permanent Death
 
