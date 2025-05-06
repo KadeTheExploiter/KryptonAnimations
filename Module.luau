@@ -133,7 +133,7 @@ local function AnimationIntoButton(Text, ID, Path)
 end
 
 Tabs['Animations'].Button({
-	Text = "- Stop Animation -",
+	Text = "Stop Animation",
 	Callback = function()
 		ReanimateModule.AnimationPlayer.Stop()
 		Music:Stop()
@@ -141,7 +141,7 @@ Tabs['Animations'].Button({
 })
 
 Tabs['Animations'].TextField({
-	Text = "Custom Anim:",
+	Text = "Custom Animation ID Here",
 	Callback = function(ID)
 		PlayAnim(ID)
 	end
