@@ -188,8 +188,8 @@ local Height; Height = Tabs['Reanimate'].TextField({
 	Callback = function(ID)
 		local ToNum = tonumber(typeof(ID)=="number" and ID or 5)
 
-		KryptonConfiguration.DestroyHeightOffset = ToNum
-		Height.SetText(`Destroy Height Offset: {ToNum}`)
+		KryptonConfiguration.DestroyHeightOffset = ToNum or 5
+		Height:SetText(`Destroy Height Offset: {ToNum}`)
 	end
 })
 
