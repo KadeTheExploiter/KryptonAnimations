@@ -1,6 +1,7 @@
 
 KryptonConfiguration = {
-	DestroyHeightOffset = 5, -- Make it higher if your hats fall
+	DestroyHeightOffset = 10, -- Make it higher if your hats fall
+	RespawnTime = 0.26,
 	DontStartYet = true,
 	ReturnOnDeath = false,
 	Refit = false,
@@ -186,13 +187,22 @@ Tabs['Reanimate'].Button({
 local Height; Height = Tabs['Reanimate'].TextField({
 	Text = `Destroy Height Offset: {KryptonConfiguration.DestroyHeightOffset}`,
 	Callback = function(ID)
-		local ToNum = tonumber(typeof(ID)=="number" and ID or 5)
+		local ToNum = tonumber(typeof(ID)=="number" and ID or 10)
 
-		KryptonConfiguration.DestroyHeightOffset = ToNum or 5
-		Height:SetText(`Destroy Height Offset: {ToNum}`)
+		KryptonConfiguration.DestroyHeightOffset = ToNum and ToNum or 10
+		Height:SetText("Destroy Height Offset:"..tostring(ToNum))
 	end
 })
 
+local Height; Height = Tabs['Reanimate'].TextField({
+	Text = `RespawnTime: {KryptonConfiguration.RespawnTime}`,
+	Callback = function(ID)
+		local ToNum = tonumber(typeof(ID)=="number" and ID or 0.26)
+
+		KryptonConfiguration.DestroyHeightOffset = ToNum and ToNum or 0.26
+		Height:SetText("Destroy Height Offset:"..tostring(ToNum))
+	end
+})
 
 SettingIntoToggle("Permanent Death", "PermanentDeath", false, "Requires Replicatesignal, keeps you in a dead state without respawning.")
 SettingIntoToggle("Refit", "Refit", false, "Automatically Respawns you if you lose ownership of hats, requires PermanentDeath")
