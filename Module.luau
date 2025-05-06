@@ -2,19 +2,19 @@
 KryptonConfiguration = {
 	DestroyHeightOffset = 5, -- Make it higher if your hats fall
 	DontStartYet = true,
-	ReturnOnDeath = true,
-	Refit = true,
+	ReturnOnDeath = false,
+	Refit = false,
 	SetCharacter = false,
-	Animations = true,
-	NoCollisions = true,
+	Animations = false,
+	NoCollisions = false,
 	AntiVoiding = false,
 	SetSimulationRadius = true,
 	DisableCharacterScripts = true,
 	AccessoryFallbackDefaults = true,
 	OverlayFakeCharacter = false,
 	LimitHatsPerLimb = false,
-	NoBodyNearby = true,
-	PermanentDeath = true,
+	NoBodyNearby = false,
+	PermanentDeath = false,
 }
 
 local Workspace = game:GetService("Workspace")
@@ -200,4 +200,5 @@ SettingIntoToggle("Rig Animations", "Animations", false, "Plays default animatio
 SettingIntoToggle("Overlay Rig", "OverlayFakeCharacter", false, "Overlays the rig by making it semi-transparent")
 SettingIntoToggle("Hide Real Body", "NoBodyNearby", false, "Hides the real character by destroying it with use of FallenPartsDestroyHeight")
 SettingIntoToggle("Disable Collisions", "NoCollisions", false, "Removes collisions from the rig")
+SettingIntoToggle("Return On Void", "AntiVoiding", false, "Brings you back to spawn once you slip into the void.")
 SettingIntoToggle("Return On Death ", "ReturnOnDeath", false, "Brings you back into the same place you were after stopping the reanimate")
